@@ -1,0 +1,32 @@
+.switch {
+    position: relative;
+    width: 3rem;
+    height: 1.5rem;
+    background-color: #dddddd;
+    border-radius: .75rem;
+    outline: none;
+    box-shadow: 1px 2px 3px #d3d3dd;
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    transition: background-color .3s ease-in-out;
+    cursor: pointer;
+
+    &::after {
+        position: absolute;
+        content: '';
+        left: 1.4rem;
+        width: 1.4rem;
+        height: 1.4rem;
+        border-radius: 50%;
+        background-color: #ffffff;
+        border: 1px solid #dadada;
+        transition: left .3s ease;
+    }
+}
+
+.switch:checked {
+    background-color: #07c160;
+    &::after {
+        left: 0;
+    }
+}
