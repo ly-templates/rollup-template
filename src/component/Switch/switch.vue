@@ -5,7 +5,7 @@
 export default {
   name: "el-switch",
   data() {
-    return {};
+    return {}
   },
 };
 </script>

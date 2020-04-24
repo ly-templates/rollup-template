@@ -1,7 +1,9 @@
 const path = require("path");
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
+const config = require('./config')
 module.exports = {
   mode: "development",
   entry: path.resolve(__dirname, "main.js"),
@@ -22,12 +24,7 @@ module.exports = {
       },
       {
         test: /\.(scss|css)$/,
-        use: [
-          { loader: "style-loader" },
-          { loader: "css-loader" },
-          { loader: "postcss-loader" },
-          { loader: "sass-loader" },
-        ],
+        use: ["style-loader", "css-loader", "postcss-loader", "sass-loader"],
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
@@ -45,8 +42,8 @@ module.exports = {
   plugins: [
     new FriendlyErrorsWebpackPlugin({
       compilationSuccessInfo: {
-        messages: ['You application is running here http://localhost:8100'],
-      }
+        messages: [`You application is running at ${config.devServer.host}:${config.devServer.port} `],
+      },
     }),
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
@@ -60,10 +57,9 @@ module.exports = {
         removeAttributeQuotes: true,
       },
     }),
+    new CleanWebpackPlugin()
   ],
   devServer: {
-    port: 8100,
-    hot: true,
-    open: true,
-  },
+    ...config.devServer
+  }
 };

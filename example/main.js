@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App'
-import elSwitch from '../dist/library.min.js'
+import elSwitch from '../dist/library.es.js'
 import "../dist/library.min.css"
 
 Vue.config.productionTip = false

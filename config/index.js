@@ -53,7 +53,7 @@ const inputOptions = {
 };
 
 const output = {
-  file: "dist/library.min.js",
+  file: "dist/library.es.js",
   name: "library",
   format: "es"
 };
@@ -65,4 +65,5 @@ isProduction() &&
   (exportModule["watch"] = {
     include: "src/**",
   });
+  
 module.exports = exportModule;
