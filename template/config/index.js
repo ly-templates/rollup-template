@@ -15,10 +15,13 @@ const { terser } = require("rollup-plugin-terser");
 {{#if_eq module 'scss'}}
 const scss = require("rollup-plugin-scss");
 {{/if_eq}}
-{{module}}
+{{#if_eq module 'less'}}
+const scss = require("rollup-plugin-less");
+{{/if_eq}}
+{{#module}}
 const CleanCSS = require("clean-css");
 {{/module}}
-{{/image}}
+{{#image}}
 const image = require("@rollup/plugin-image");
 {{/image}}
 const { isProduction } = require("./utlils");
@@ -88,15 +91,15 @@ const inputOptions = {
 const output = {
   name: "{{name}}",
   {{#if_eq module 'es'}}
-  file: "dist/library.es.js",
+  file: "dist/{{name}}.es.js",
   format: "es"
   {{/if_eq}}
   {{#if_eq module 'umd'}}
-  file: "dist/library.umd.js",
+  file: "dist/{{name}}.umd.js",
   format: "umd"
   {{/if_eq}}
   {{#if_eq module 'cjs'}}
-  file: "dist/library.cjs.js",
+  file: "dist/{{name}}.cjs.js",
   format: "cjs"
   {{/if_eq}}
 };
