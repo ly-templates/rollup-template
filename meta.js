@@ -136,8 +136,8 @@ module.exports = {
   },
   filters: {
     'example/**/*': "vue",
-    "src/component/Switch/switch.scss":"css && css === 'scss'",
-    "src/component/Switch/switch.less":"css && css === 'less'",
+    "src/component/Switch/switch.scss":"vue && css === 'scss'",
+    "src/component/Switch/switch.less":"vue && css === 'less'",
   },
   complete: function(data, { chalk }) {
     const green = chalk.green
