@@ -18,11 +18,9 @@ const scss = require("rollup-plugin-scss");
 {{#if_eq css 'less'}}
 const less = require("rollup-plugin-less");
 {{/if_eq}}
-{{#module}}
 {{#css}}
 const CleanCSS = require("clean-css");
 {{/css}}
-{{/module}}
 {{#image}}
 const image = require("@rollup/plugin-image");
 {{/image}}
