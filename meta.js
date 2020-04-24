@@ -136,7 +136,7 @@ module.exports = {
   },
   filters: {
     'example/**/*': "vue",
-    "src/component": "vue",
+    "src/component/**/*": "vue",
     "src/component/Switch/switch.scss":"vue && css === 'scss'",
     "src/component/Switch/switch.less":"vue && css === 'less'",
   },
