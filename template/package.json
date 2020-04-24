@@ -1,41 +1,57 @@
 {
-  "name": "rollup-template",
-  "version": "1.0.0",
-  "description": "",
-  "main": "./dist/library.es.js",
+  "name": "{{name}}",
+  "version": "{{version}}",
+  "description": "{{description}}",
+  {{#if_eq module 'es'}}
+  "main": "./dist/{{name}}.es.js",
+  {{/if_eq}}
+  {{#if_eq module 'umd'}}
+  "main": "./dist/{{name}}.umd.js",
+  {{/if_eq}}
+  {{#if_eq module 'cjs'}}
+  "main": "./dist/{{name}}.cjs.js",
+  {{/if_eq}}
   "scripts": {
     "dev": "rimraf dist && cross-env NODE_ENV=dev node rollup.config.js",
     "build": "rimraf dist && cross-env NODE_ENV=prod  node rollup.config.js",
     "test": "webpack-dev-server --inline --progress --config ./example/webpack.config.js"
   },
   "keywords": [],
-  "author": "harhao",
+  "author": "{{author}}",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.9.0",
+    {{#image}}
     "@rollup/plugin-image": "^2.0.4",
+    {{/image}}
     "autoprefixer": "^9.7.6",
-    "babel-loader": "^8.1.0",
+    "cross-env": "^7.0.2",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.6.1",
+    "rollup-plugin-alias": "^2.2.0",
+    "rollup-plugin-buble": "^0.19.8",
+    "rollup-plugin-commonjs": "^10.1.0",
+    {{#json}}
+    "rollup-plugin-json": "^4.0.0",
+    {{/json}}
+    "rollup-plugin-node-resolve": "^5.2.0",
+    {{#if_eq css 'scss'}}
+    "rollup-plugin-scss": "^2.4.0",
+    {{/if_eq}}
+    {{#terser}}
+    "rollup-plugin-terser": "^5.3.0",
+    {{/terser}}
+    {{#vue}}
+    "rollup-plugin-vue": "^5.0.1",
     "chalk": "^4.0.0",
     "clean-css": "^4.2.3",
     "clean-webpack-plugin": "^3.0.0",
-    "cross-env": "^7.0.2",
+    "babel-loader": "^8.1.0",
     "css-loader": "^3.5.2",
     "file-loader": "^6.0.0",
     "friendly-errors-webpack-plugin": "^1.7.0",
     "html-webpack-plugin": "^4.2.0",
     "ora": "^4.0.4",
     "postcss-loader": "^3.0.0",
-    "rimraf": "^3.0.2",
-    "rollup": "^2.6.1",
-    "rollup-plugin-alias": "^2.2.0",
-    "rollup-plugin-buble": "^0.19.8",
-    "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-json": "^4.0.0",
-    "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-scss": "^2.4.0",
-    "rollup-plugin-terser": "^5.3.0",
-    "rollup-plugin-vue": "^5.0.1",
     "sass-loader": "^8.0.2",
     "style-loader": "^1.1.4",
     "vue": "^2.6.11",
@@ -44,5 +60,6 @@
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3"
+    {{/vue}}
   }
 }
