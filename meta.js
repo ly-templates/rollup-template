@@ -88,7 +88,7 @@ module.exports = {
       ]
     },
     css: {
-      when: 'isNotTest',
+      when: 'isNotTest && vue',
       type: 'list',
       message:
         '支持的CSS预处理?',
@@ -136,6 +136,8 @@ module.exports = {
   },
   filters: {
     'example/**/*': "vue",
+    "src/component/Switch/switch.scss":"css && css === 'scss'",
+    "src/component/Switch/switch.less":"css && css === 'less'",
   },
   complete: function(data, { chalk }) {
     const green = chalk.green
