@@ -12,9 +12,12 @@ const alias = require("rollup-plugin-alias");
 {{#/terser}}
 const { terser } = require("rollup-plugin-terser");
 {{/terser}}
-{{}}
+{{#if_eq module 'scss'}}
 const scss = require("rollup-plugin-scss");
+{{/if_eq}}
+{{module}}
 const CleanCSS = require("clean-css");
+{{/module}}
 {{/image}}
 const image = require("@rollup/plugin-image");
 {{/image}}
@@ -49,6 +52,7 @@ const inputOptions = {
       include: ["src/**"],
     }),
     {{/image}}
+    {{#if_eq css 'scss'}}
     scss({
       output(style) {
         if (!existsSync("dist")) {
@@ -57,6 +61,7 @@ const inputOptions = {
         writeFileSync("dist/{{name}}.min.css", new CleanCSS().minify(style).styles);
       },
     }),
+    {{/if_eq}}
     resolve(),
     buble({
       exclude: ["node_modules/**"],
