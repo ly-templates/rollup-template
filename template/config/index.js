@@ -9,7 +9,7 @@ const vue = require("rollup-plugin-vue");
 const json = require("rollup-plugin-json");
 {{/json}}
 const alias = require("rollup-plugin-alias");
-{{#/terser}}
+{{#terser}}
 const { terser } = require("rollup-plugin-terser");
 {{/terser}}
 {{#if_eq module 'scss'}}
@@ -22,7 +22,9 @@ const CleanCSS = require("clean-css");
 const image = require("@rollup/plugin-image");
 {{/image}}
 const { isProduction } = require("./utlils");
+{{#vue}}
 const { writeFileSync, existsSync, mkdirSync } = require("fs");
+{{/vue}}
 const projectRootDir = path.resolve(__dirname);
 
 const inputOptions = {
@@ -60,6 +62,16 @@ const inputOptions = {
         }
         writeFileSync("dist/{{name}}.min.css", new CleanCSS().minify(style).styles);
       },
+    }),
+    {{/if_eq}}
+    {{#if_eq css 'less'}}
+    less({
+      output(style) {
+        if (!existsSync("dist")) {
+          mkdirSync("dist");
+        }
+        writeFileSync("dist/{{name}}.min.css", new CleanCSS().minify(style).styles);
+      }
     }),
     {{/if_eq}}
     resolve(),
