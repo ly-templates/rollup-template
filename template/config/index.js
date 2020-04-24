@@ -12,11 +12,11 @@ const alias = require("rollup-plugin-alias");
 {{#terser}}
 const { terser } = require("rollup-plugin-terser");
 {{/terser}}
-{{#if_eq module 'scss'}}
+{{#if_eq css 'scss'}}
 const scss = require("rollup-plugin-scss");
 {{/if_eq}}
-{{#if_eq module 'less'}}
-const scss = require("rollup-plugin-less");
+{{#if_eq css 'less'}}
+const less = require("rollup-plugin-less");
 {{/if_eq}}
 {{#module}}
 const CleanCSS = require("clean-css");
