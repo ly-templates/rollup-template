@@ -73,7 +73,9 @@ const inputOptions = {
         if (!existsSync("dist")) {
           mkdirSync("dist");
         }
-        writeFileSync("dist/{{name}}.min.css", new CleanCSS().minify(style).styles);
+        const content = new CleanCSS().minify(style).styles
+        writeFileSync("dist/{{name}}.min.css", content);
+        return content
       }
     }),
     {{/if_eq}}
