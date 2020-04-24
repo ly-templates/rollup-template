@@ -14,7 +14,8 @@ exports.sortDependencies = function sortDependencies(data) {
     data.inPlace ? '' : data.destDirName,
     'package.json'
   )
-  const packageJson = JSON.parse(fs.readFileSync(packageJsonFile))
+  const content = JSON.stringify(fs.readFileSync(packageJsonFile))
+  const packageJson = JSON.parse(content)
   packageJson.devDependencies = sortObject(packageJson.devDependencies)
   packageJson.dependencies = sortObject(packageJson.dependencies)
   fs.writeFileSync(packageJsonFile, JSON.stringify(packageJson, null, 2) + '\n')
@@ -75,7 +76,7 @@ To get started:
   ${yellow(
     `${data.inPlace ? '' : `cd ${data.destDirName}\n  `}${installMsg(
       data
-    )}${lintMsg(data)}npm run build-dev`
+    )}${lintMsg(data)}npm run dev`
   )}
 `
   console.log(message)
@@ -133,9 +134,8 @@ function runCommand(cmd, args, options) {
 }
 
 function sortObject(object) {
-  // Based on https://github.com/yarnpkg/yarn/blob/v1.3.2/src/config.js#L79-L85
   const sortedObject = {}
-  Object.keys(object)
+  object && Object.keys(object)
     .sort()
     .forEach(item => {
       sortedObject[item] = object[item]
