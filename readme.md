@@ -26,7 +26,7 @@ $ npm run test
 ```
 ## 运行结果
 
-
+![demo](https://github.com/ly-templates/rollup-template/blob/master/example.gif)
 
 
 
