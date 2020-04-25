@@ -127,6 +127,11 @@ module.exports = {
           short: 'yarn',
         },
         {
+          name: '是的,使用cnpm',
+          value: 'cnpm',
+          short: 'cnpm',
+        },
+        {
           name: '不用了，我手动安装它',
           value: false,
           short: 'no',
